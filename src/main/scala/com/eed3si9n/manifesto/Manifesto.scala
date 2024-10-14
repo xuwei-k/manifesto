@@ -1,9 +1,10 @@
 package com.eed3si9n.manifesto
 
-trait Manifesto[A1]:
-  def typeCon: String
-  def typeArguments: List[Manifesto[?]]
-  def isSingleton: Boolean
+class Manifesto[A1](
+  val typeCon: String,
+  val typeArguments: List[Manifesto[?]],
+  val isSingleton: Boolean,
+):
   override def toString(): String = show
   def show: String =
     if typeArguments.isEmpty then typeCon

@@ -19,10 +19,11 @@ object Derivation:
         isSingleton0: Boolean,
     ): Expr[Manifesto[A2]] =
       '{
-        new Manifesto[A2]:
-          override def typeCon: String = ${ Expr(typeCon0) }
-          override def typeArguments: List[Manifesto[?]] = List(${ Varargs(args0) }: _*)
-          override def isSingleton: Boolean = ${ Expr(isSingleton0) }
+        new Manifesto[A2](
+          typeCon = ${ Expr(typeCon0) },
+          typeArguments = List(${ Varargs(args0) }: _*),
+          isSingleton = ${ Expr(isSingleton0) }
+        )
       }
     def fromTypeRepr[A2: Type](repr: TypeRepr): Expr[Manifesto[A2]] =
       val show0 = repr.show(using Printer.TypeReprCode)
